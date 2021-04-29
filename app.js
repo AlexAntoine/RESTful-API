@@ -23,22 +23,23 @@ app.listen(process.env.PORT|| 3000, ()=>{
     console.log('listening on port 3000');
 });
 
-//Get articles from DB
-app.get('/articles', (req, res)=>{
-
-   article.find((error, foundArticles)=>{
-        if(error)
-        {
-            return res.send(error);
-        }
-        else
-        res.send(foundArticles);
-   });
-
+app.get('/', (req, res)=>{
+    res.send('<p>Hello Bitches</p>');
 });
 
-//Post articles from DB
-app.post('/articles', (req,res)=>{
+
+app.route('/articles').get((req, res)=>{
+
+    article.find((error, foundArticles)=>{
+         if(error)
+         {
+             return res.send(error);
+         }
+         else
+         res.send(foundArticles);
+    });
+ 
+ }).post((req,res)=>{
 
     console.log(req.body.title);
     console.log(req.body.content);
@@ -58,10 +59,7 @@ app.post('/articles', (req,res)=>{
         else
         res.send(error);
     });
-});
-
-//delete articles from DB
-app.delete('/articles', (req, res)=>{
+}).delete((req, res)=>{
 
     article.deleteMany((error)=>{
 
@@ -73,9 +71,5 @@ app.delete('/articles', (req, res)=>{
         return res.send(error)
     })
 
-});
-
-app.get('/', (req, res)=>{
-    res.send('<p>Hello Bitches</p>');
 });
 
