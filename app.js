@@ -99,3 +99,22 @@ app.route('/articles/:specificArticle')
         
     })
 })
+
+.put((req, res)=>{
+
+    article.update({title: req.params.specificArticle},
+        {title: req.body.title, content: req.body.content},{overwrite:true}, (error, result)=>{
+
+        if(error)
+        {
+            console.log(error);
+           res.send('something went wrong');
+        }
+        else
+        {
+            return res.send('successfully updated article');
+        }
+        
+    });
+
+})
