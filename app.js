@@ -118,3 +118,16 @@ app.route('/articles/:specificArticle')
     });
 
 })
+
+.patch((req, res)=>{
+
+    article.update({title: req.params.specificArticle}, {$set: req.body}, (error, results)=>{
+
+        if(error)
+        {
+            return res.send('something went wrong');
+        }
+        else
+        return res.send('successfully updated');
+    })
+})
