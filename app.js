@@ -131,3 +131,17 @@ app.route('/articles/:specificArticle')
         return res.send('successfully updated');
     })
 })
+
+.delete((req, res)=>{
+
+    article.deleteOne({title: req.params.specificArticle},(error, result)=>{
+        
+        if(error)
+        {
+            return res.send('something went wrong');
+        }
+        else
+        return res.send('article was successfully deleted');
+
+    })
+});
