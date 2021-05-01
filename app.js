@@ -28,7 +28,9 @@ app.get('/', (req, res)=>{
 });
 
 
-app.route('/articles').get((req, res)=>{
+app.route('/articles')
+
+.get((req, res)=>{
 
     article.find((error, foundArticles)=>{
          if(error)
@@ -39,7 +41,9 @@ app.route('/articles').get((req, res)=>{
          res.send(foundArticles);
     });
  
- }).post((req,res)=>{
+ })
+ 
+ .post((req,res)=>{
 
     console.log(req.body.title);
     console.log(req.body.content);
@@ -59,7 +63,9 @@ app.route('/articles').get((req, res)=>{
         else
         res.send(error);
     });
-}).delete((req, res)=>{
+})
+
+.delete((req, res)=>{
 
     article.deleteMany((error)=>{
 
