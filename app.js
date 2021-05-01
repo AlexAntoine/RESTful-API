@@ -58,7 +58,7 @@ app.route('/articles')
 
         if(!error)
         {
-            res.send('Success');
+            res.send('post request sent');
         }
         else
         res.send(error);
@@ -79,3 +79,23 @@ app.route('/articles')
 
 });
 
+//////////////////////Request targeting a specifc article///////////////////////
+
+app.route('/articles/:specificArticle')
+
+.get((req, res)=>{
+
+
+    article.findOne({title: req.params.specificArticle}, (error, foundArticle)=>{
+
+        if(error)
+        {
+            return console.log(error);
+        }
+        else
+        {
+             return res.send(foundArticle)
+        }
+        
+    })
+})
